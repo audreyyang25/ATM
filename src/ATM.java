@@ -43,10 +43,10 @@ public class ATM {
 		if (accounts.containsKey(accountNum) && accounts.get(accountNum) != 0.0) {
 			double value = accounts.get(accountNum) - withdrawal;
 			// I'm making it impossible for someone to withdraw more than they have
-			if (value < 0) {
+			if (value < 0 || withdrawal < 0) {
 				return false;		
 			}
-			accounts.replace (accountNum, value);
+			accounts.replace (accountNum, (double) Math.round(value*100)/100);
 			return true;
 		}
 		return false;
